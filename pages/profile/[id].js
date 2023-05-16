@@ -1,19 +1,19 @@
-'use client';
-import React, { Fragment, useEffect, useState } from 'react';
-import { set, useForm } from 'react-hook-form';
-import { Listbox, Transition } from '@headlessui/react';
+"use client";
+import React, { Fragment, useEffect, useState } from "react";
+import { set, useForm } from "react-hook-form";
+import { Listbox, Transition } from "@headlessui/react";
 import {
   ChevronUpDownIcon,
   PencilIcon,
   EnvelopeIcon,
-} from '@heroicons/react/24/solid';
-import Layout from '../../components/layouts/Layout';
-import { useRouter } from 'next/router';
-import { useProfile, usePatchProfile, usePatchAccess } from '@/hooks/api';
-import { calculateAge, addLineBreaks } from '@/utils/helpers';
-import { toast } from 'react-hot-toast';
-import { data } from 'autoprefixer';
-import { queryClient } from '@/queryClient';
+} from "@heroicons/react/24/solid";
+import Layout from "../../components/layouts/Layout";
+import { useRouter } from "next/router";
+import { useProfile, usePatchProfile, usePatchAccess } from "@/hooks/api";
+import { calculateAge, addLineBreaks } from "@/utils/helpers";
+import { toast } from "react-hot-toast";
+import { data } from "autoprefixer";
+import { queryClient } from "@/queryClient";
 
 // const user = {
 //   primaryCancerCenter: 'MD Anderson Cancer Center',
@@ -27,7 +27,7 @@ import { queryClient } from '@/queryClient';
 // };
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 const ProfilePage = () => {
@@ -45,9 +45,9 @@ const ProfilePage = () => {
     formState: { errors },
   } = useForm();
   const [isEditing, setIsEditing] = React.useState(false);
-  const [selectedCancer, setSelectedCancer] = React.useState('');
-  const [selectedSubType, setSelectedSubType] = React.useState('');
-  const [bio, setBio] = React.useState('');
+  const [selectedCancer, setSelectedCancer] = React.useState("");
+  const [selectedSubType, setSelectedSubType] = React.useState("");
+  const [bio, setBio] = React.useState("");
   const [isToggled, setIsToggled] = useState();
   const [accessLevel, setAccessLevel] = useState(2);
 
@@ -81,36 +81,36 @@ const ProfilePage = () => {
     mutate(payload, {
       onSuccess: (data) => {
         // Handle successful response
-        console.log('Profile updated:', data);
-        toast.success('Profile updated');
+        console.log("Profile updated:", data);
+        toast.success("Profile updated");
         setIsToggled(!isToggled);
-        queryClient.invalidateQueries('profile');
+        queryClient.invalidateQueries("profile");
       },
       onError: (error) => {
         // Handle error
-        console.error('Error updating profile:', error);
-        toast.error('Error updating profile');
+        console.error("Error updating profile:", error);
+        toast.error("Error updating profile");
       },
     });
   };
 
   const commonCancerTypes = [
-    { id: 1, name: 'Breast Cancer' },
-    { id: 2, name: 'Lung Cancer' },
-    { id: 3, name: 'Prostate Cancer' },
-    { id: 4, name: 'Colorectal Cancer' },
-    { id: 5, name: 'Bladder Cancer' },
-    { id: 6, name: 'Melanoma' },
-    { id: 7, name: 'Non-Hodgkin Lymphoma' },
-    { id: 8, name: 'Thyroid Cancer' },
-    { id: 9, name: 'Kidney Cancer' },
-    { id: 10, name: 'Leukemia' },
+    { id: 1, name: "Breast Cancer" },
+    { id: 2, name: "Lung Cancer" },
+    { id: 3, name: "Prostate Cancer" },
+    { id: 4, name: "Colorectal Cancer" },
+    { id: 5, name: "Bladder Cancer" },
+    { id: 6, name: "Melanoma" },
+    { id: 7, name: "Non-Hodgkin Lymphoma" },
+    { id: 8, name: "Thyroid Cancer" },
+    { id: 9, name: "Kidney Cancer" },
+    { id: 10, name: "Leukemia" },
   ];
 
   const subtypeOptions = {
-    'Breast Cancer': ['Subtype 1', 'Subtype 2', 'Subtype 3'],
-    'Lung Cancer': ['Subtype 1', 'Subtype 2'],
-    'Prostate Cancer': ['Subtype 1', 'Subtype 2', 'Subtype 3', 'Subtype 4'],
+    "Breast Cancer": ["Subtype 1", "Subtype 2", "Subtype 3"],
+    "Lung Cancer": ["Subtype 1", "Subtype 2"],
+    "Prostate Cancer": ["Subtype 1", "Subtype 2", "Subtype 3", "Subtype 4"],
     // Add more subtypes for other cancer types
   };
 
@@ -122,7 +122,7 @@ const ProfilePage = () => {
   //   };
 
   const handleCancerTypeChange = (selectedType) => {
-    setValue('cancerType', selectedType);
+    setValue("cancerType", selectedType);
     setSelectedCancer(selectedType);
   };
 
@@ -169,14 +169,14 @@ const ProfilePage = () => {
                     />
                     <div
                       className={`block w-full h-full rounded-full ${
-                        isToggled ? 'bg-green-500' : 'bg-gray-600'
+                        isToggled ? "bg-green-500" : "bg-gray-600"
                       }`}
                     ></div>
                     <div
                       className={`dot absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full transition-transform ${
-                        isToggled ? 'translate-x-4' : 'translate-x-0'
+                        isToggled ? "translate-x-4" : "translate-x-0"
                       }`}
-                      style={{ zIndex: '1' }}
+                      style={{ zIndex: "1" }}
                     ></div>
                   </div>
                 </label>
@@ -202,7 +202,7 @@ const ProfilePage = () => {
                           placeholder="name"
                           type="text"
                           defaultValue={user.name}
-                          {...register('name', { required: true })}
+                          {...register("name", { required: true })}
                         />
                       </div>
                       <div className="flex flex-col">
@@ -217,7 +217,7 @@ const ProfilePage = () => {
                           className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                           placeholder="age"
                           defaultValue={user.age}
-                          {...register('age', { required: true })}
+                          {...register("age", { required: true })}
                         />
                       </div>
                     </div>
@@ -229,7 +229,7 @@ const ProfilePage = () => {
                             <h2 className="text-2xl font-bold">
                               {!isToggled ? (
                                 <div className="w-full col-span-5">
-                                  {user?.user.first_name + ' '}
+                                  {user?.user.first_name + " "}
                                   {user.user.last_name}
                                 </div>
                               ) : (
@@ -271,7 +271,7 @@ const ProfilePage = () => {
                 <div className="mb-4">
                   {isEditing ? (
                     <Listbox
-                      value={watch('cancerType')}
+                      value={watch("cancerType")}
                       onChange={handleCancerTypeChange}
                     >
                       {({ open }) => (
@@ -306,9 +306,9 @@ const ProfilePage = () => {
                                     className={({ active }) =>
                                       classNames(
                                         active
-                                          ? 'bg-indigo-600 text-white'
-                                          : 'text-gray-900',
-                                        'relative cursor-default select-none py-2 pl-8 pr-4'
+                                          ? "bg-indigo-600 text-white"
+                                          : "text-gray-900",
+                                        "relative cursor-default select-none py-2 pl-8 pr-4"
                                       )
                                     }
                                     value={cancerType}
@@ -318,9 +318,9 @@ const ProfilePage = () => {
                                         <span
                                           className={classNames(
                                             selectedCancer
-                                              ? 'font-semibold'
-                                              : 'font-normal',
-                                            'block truncate'
+                                              ? "font-semibold"
+                                              : "font-normal",
+                                            "block truncate"
                                           )}
                                         >
                                           {cancerType.name}
@@ -330,9 +330,9 @@ const ProfilePage = () => {
                                           <span
                                             className={classNames(
                                               active
-                                                ? 'text-white'
-                                                : 'text-indigo-600',
-                                              'absolute inset-y-0 left-0 flex items-center pl-1.5'
+                                                ? "text-white"
+                                                : "text-indigo-600",
+                                              "absolute inset-y-0 left-0 flex items-center pl-1.5"
                                             )}
                                           >
                                             <CheckIcon
@@ -374,7 +374,7 @@ const ProfilePage = () => {
                       {...register('bio', { required: true })}
                     />
                   ) : ( */}
-                    <div>{addLineBreaks(user.user.bio ?? '')}</div>
+                    <div>{addLineBreaks(user.user.bio ?? "")}</div>
                     {errors.bio && (
                       <span className="text-red-500">
                         Please enter your bio
@@ -388,7 +388,7 @@ const ProfilePage = () => {
                 {isEditing ? (
                   <button
                     type="submit"
-                    className="bg-blue-500 text-white py-1 px-3 rounded"
+                    className="bg-indigo-500 text-white py-1 px-3 rounded"
                   >
                     Save
                   </button>

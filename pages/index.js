@@ -1,11 +1,11 @@
-'use client';
-import { Fragment, React, useState } from 'react';
+"use client";
+import { Fragment, React, useState } from "react";
 
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import Map from '../components/Map';
-import Card from '../components/Card';
-import NavBar from '../components/NavBar';
-import { useProviders } from '@/hooks/api';
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import Map from "../components/Map";
+import Card from "../components/Card";
+import NavBar from "../components/NavBar";
+import { useProviders } from "@/hooks/api";
 
 export default function Home() {
   const { isLoaded } = useLoadScript({
@@ -22,7 +22,7 @@ export default function Home() {
       <NavBar />
       <main className="flex min-h-screen flex-row justify-between p-10 bg-slate-50">
         <div className="w-1/2 mr-10">
-          {providers.map((provider, index) => (
+          {providers?.map((provider, index) => (
             <Card
               className="shadow-md"
               key={index}

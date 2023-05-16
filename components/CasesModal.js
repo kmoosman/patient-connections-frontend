@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import TypeCard from './TypeCard';
+import React, { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import TypeCard from "./TypeCard";
 
 export default function CasesModal({
   provider,
@@ -42,11 +42,11 @@ export default function CasesModal({
                 <div className="h-96 overflow-auto">
                   <div className="bg-indigo-100 p-4 flex flex-row justify-between rounded">
                     <h1 className="text-2xl font-semibold self-center text-gray-900">
-                      {selectedCancerType.name} Cancer
+                      {selectedCancerType.name}
                     </h1>
                     <div>
                       <h3 className="text-large text-right text-gray-700">
-                        {provider.first_name} {provider.last_name},{' '}
+                        {provider.first_name} {provider.last_name},{" "}
                         {provider.credential}
                       </h3>
                       <h3 className="text-sm text-right text-gray-500">
